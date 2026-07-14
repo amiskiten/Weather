@@ -29,16 +29,12 @@
 		<EmbeddedResource Include="StaticData\secret.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</EmbeddedResource>
-	</ItemGroup>
-	<ItemGroup>
-		<None Remove="StaticData\AppSettings.json" />
-		<None Remove="StaticData\Cities.json" />
-		<None Remove="StaticData\icon.ico" />
-		<None Remove="StaticData\MoonPhases.json" />
-		<None Remove="StaticData\secret.json" />
-		<None Remove="StaticData\WeatherCodes.json" />
-	</ItemGroup>
-	<ItemGroup>
+		<EmbeddedResource Include="StaticData\WeatherCodes.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="StaticData\Cities.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<Resource Include="StaticData\icon.ico">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</Resource>
