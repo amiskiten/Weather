@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Weather.WeatherImages.Elements.Lightning"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.WeatherImages.Elements"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LightningRect"
+                                                   Storyboard.TargetProperty="Opacity"
+                                                   RepeatBehavior="Forever">
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:0"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:0.143"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:0.286"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:0.429"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:0.571"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:0.714"/>
+                        <LinearDoubleKeyFrame Value="0.1" KeyTime="0:0:0.857"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:1.0"/>
+                        <LinearDoubleKeyFrame Value="0.1" KeyTime="0:0:1.143"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:1.286"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:1.429"/>
+                        <LinearDoubleKeyFrame Value="0.1" KeyTime="0:0:1.571"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:1.714"/>
+                        <LinearDoubleKeyFrame Value="0.1" KeyTime="0:0:1.857"/>
+                        <LinearDoubleKeyFrame Value="1"   KeyTime="0:0:2"/>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Rectangle Fill="{StaticResource LightningDrawing}"
+               Width="64" Height="64"
+               x:Name="LightningRect"/>
+</UserControl>
+

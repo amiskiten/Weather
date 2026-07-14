@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Weather.WeatherImages.Images.PartlyCloudyDay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.WeatherImages.Images"
+             xmlns:elems="clr-namespace:Weather.WeatherImages.Elements"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="sunRotation"
+                                     Storyboard.TargetProperty="Angle"
+                                     From="0" To="360" Duration="0:0:45"
+                                     RepeatBehavior="Forever"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Viewbox>
+        <Canvas Width="64" Height="64">
+            <Ellipse Canvas.Left="14" Canvas.Top="19"
+                     Width="10" Height="10"
+                     Fill="{StaticResource PartlyCloudySunGradient}"
+                     Stroke="#F8AF18" StrokeThickness="0.5"/>
+
+            <Path x:Name="sunRays"
+                  Data="M19,15.67 V12.5 m0,23 v-3.17 m5.89,-14.22 l2.24,-2.24 M10.87,32.13 l2.24,-2.24 m0,-11.78 l-2.24,-2.24 m16.26,16.26 l-2.24,-2.24 M7.5,24 h3.17 m19.83,0 h-3.17"
+                  Stroke="#FBBF24" StrokeThickness="2"
+                  StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                  Fill="Transparent">
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="sunRotation" CenterX="19" CenterY="24"/>
+                </Path.RenderTransform>
+            </Path>
+
+            <Rectangle Fill="{StaticResource CloudDrawing}" Height="64" Width="64"/>
+        </Canvas>
+    </Viewbox>
+</UserControl>
+

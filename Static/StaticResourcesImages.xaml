@@ -1,0 +1,263 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:services="clr-namespace:Weather.Services">
+    <services:ImageConverter x:Key="ImageConverter"/>
+    <!--Cloud-->
+    <LinearGradientBrush x:Key="cloudGradient"
+                 MappingMode="Absolute"
+                 StartPoint="22.56,21.96"
+                 EndPoint="39.2,50.8">
+        <GradientStop Offset="0" Color="#F3F7FE" />
+        <GradientStop Offset="0.45" Color="#F3F7FE" />
+        <GradientStop Offset="1" Color="#DEEAFB" />
+    </LinearGradientBrush>
+    <DrawingBrush x:Key="CloudDrawing"
+                  Viewbox="0,0,64,64" ViewboxUnits="Absolute"
+                  Viewport="0,0,64,64" ViewportUnits="Absolute"
+                  Stretch="None">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Brush="{StaticResource cloudGradient}" 
+                             Geometry="M46.5 31.5 h-0.32 a 10.49 10.49 0 0 0 -19.11 -8 a 7 7 0 0 0 -10.57 6 a 7.21 7.21 0 0 0 0.1 1.14 A 7.5 7.5 0 0 0 18 45.5 a 4.19 4.19 0 0 0 0.5 0 v0 h28 a 7 7 0 0 0 0 -14 z">
+                <GeometryDrawing.Pen>
+                    <Pen Brush="#E6EFFC" Thickness="0.5" />
+                </GeometryDrawing.Pen>
+            </GeometryDrawing>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+
+    <!--Lightning-->
+    <LinearGradientBrush x:Key="LightningGradient"
+                     MappingMode="Absolute"
+                     StartPoint="26.74,37.88"
+                     EndPoint="35.76,53.52">
+        <GradientStop Color="#F7B23B" Offset="0"/>
+        <GradientStop Color="#F7B23B" Offset="0.45"/>
+        <GradientStop Color="#F59E0B" Offset="1"/>
+    </LinearGradientBrush>
+    <DrawingBrush x:Key="LightningDrawing"
+                  Viewbox="0,0,64,64" ViewboxUnits="Absolute"
+                  Viewport="0,0,64,64" ViewportUnits="Absolute"
+                  Stretch="None">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Brush="{StaticResource LightningGradient}"
+                             Geometry="M30 36 l-4 12 h4 l-2 10 l10 -14 h-6 l4 -8 h-6 z">
+                <GeometryDrawing.Pen>
+                    <Pen Brush="#F6A823" Thickness="0.5"/>
+                </GeometryDrawing.Pen>
+            </GeometryDrawing>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!-- Rain drops-->
+    <!-- Drop stroke gradient 1 (a) -->
+    <LinearGradientBrush x:Key="RaindropGradient1"
+                         MappingMode="Absolute"
+                         StartPoint="22.53,42.95"
+                         EndPoint="25.47,48.05">
+        <LinearGradientBrush.Transform>
+            <TranslateTransform X="-23.61" Y="-43.03"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#4286EE" Offset="0"/>
+        <GradientStop Color="#4286EE" Offset="0.45"/>
+        <GradientStop Color="#0950BC" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Drop stroke gradient 2 (c) -->
+    <LinearGradientBrush x:Key="RaindropGradient2"
+                         MappingMode="Absolute"
+                         StartPoint="29.53,42.95"
+                         EndPoint="32.47,48.05">
+        <LinearGradientBrush.Transform>
+            <TranslateTransform X="-30.61" Y="-43.03"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#4286EE" Offset="0"/>
+        <GradientStop Color="#4286EE" Offset="0.45"/>
+        <GradientStop Color="#0950BC" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Drop stroke gradient 3 (d) -->
+    <LinearGradientBrush x:Key="RaindropGradient3"
+                         MappingMode="Absolute"
+                         StartPoint="36.53,42.95"
+                         EndPoint="39.47,48.05">
+        <LinearGradientBrush.Transform>
+            <TranslateTransform X="-37.61" Y="-43.03"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#4286EE" Offset="0"/>
+        <GradientStop Color="#4286EE" Offset="0.45"/>
+        <GradientStop Color="#0950BC" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!--Overcast-->
+    <LinearGradientBrush x:Key="OvercastCloudGradient"
+                             MappingMode="Absolute"
+                             StartPoint="40.76,23"
+                             EndPoint="50.83,40.46">
+        <GradientStop Color="#9CA3AF" Offset="0"/>
+        <GradientStop Color="#9CA3AF" Offset="0.45"/>
+        <GradientStop Color="#6B7280" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!--fog/mist-->
+    <LinearGradientBrush x:Key="LineBrush"
+                             MappingMode="Absolute"
+                             StartPoint="10.5,-6.29"
+                             EndPoint="19.5,9.29">
+        <GradientStop Color="#D4D7DD" Offset="0"/>
+        <GradientStop Color="#D4D7DD" Offset="0.45"/>
+        <GradientStop Color="#BEC1C6" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!--Drizzle raindrops-->
+    <LinearGradientBrush x:Key="DrizzleRaindropGradient1"
+                 MappingMode="Absolute"
+                 StartPoint="30.31,44.3"
+                 EndPoint="31.69,46.7">
+        <GradientStop Offset="0" Color="#4286EE" />
+        <GradientStop Offset="0.45" Color="#4286EE" />
+        <GradientStop Offset="1" Color="#0950BC" />
+    </LinearGradientBrush>
+
+    <!-- Градиент капли 2 (id="d") -->
+    <LinearGradientBrush x:Key="DrizzleRaindropGradient2"
+                 MappingMode="Absolute"
+                 StartPoint="37.31,44.3"
+                 EndPoint="38.69,46.7">
+        <GradientStop Offset="0" Color="#4286EE" />
+        <GradientStop Offset="0.45" Color="#4286EE" />
+        <GradientStop Offset="1" Color="#0950BC" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DrizzleRaindropGradient3"
+                 MappingMode="Absolute"
+                 StartPoint="44.31,44.3"
+                 EndPoint="45.69,46.7">
+        <GradientStop Offset="0" Color="#4286EE" />
+        <GradientStop Offset="0.45" Color="#4286EE" />
+        <GradientStop Offset="1" Color="#0950BC" />
+    </LinearGradientBrush>
+
+
+
+    <!--Snow-->
+    <LinearGradientBrush x:Key="snow1Circle"
+                     MappingMode="Absolute"
+                     StartPoint="30.12,43.48"
+                     EndPoint="31.88,46.52">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="snow1Rays"
+                     MappingMode="Absolute"
+                     StartPoint="29.67,42.69"
+                     EndPoint="32.33,47.31">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="snow2Circle"
+                     MappingMode="Absolute"
+                     StartPoint="23.12,43.48"
+                     EndPoint="24.88,46.52">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="snow2Rays"
+                     MappingMode="Absolute"
+                     StartPoint="22.67,42.69"
+                     EndPoint="25.33,47.31">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="snow3Circle"
+                     MappingMode="Absolute"
+                     StartPoint="37.12,43.48"
+                     EndPoint="38.88,46.52">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="snow3Rays"
+                     MappingMode="Absolute"
+                     StartPoint="36.67,42.69"
+                     EndPoint="39.33,47.31">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Hail-->
+    <LinearGradientBrush x:Key="HailDropGradient"
+                     StartPoint="23.25,43.7"
+                     EndPoint="24.75,46.3"
+                     MappingMode="Absolute">
+        <GradientStop Color="#86C3DB" Offset="0.0" />
+        <GradientStop Color="#86C3DB" Offset="0.45" />
+        <GradientStop Color="#5EAFCF" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <!-- PartlyCloudy-->
+
+
+    <LinearGradientBrush x:Key="PartlyCloudySunGradient"
+                             MappingMode="Absolute"
+                             StartPoint="16.5,19.67"
+                             EndPoint="21.5,28.33">
+        <GradientStop Color="#FBBF24" Offset="0"/>
+        <GradientStop Color="#FBBF24" Offset="0.45"/>
+        <GradientStop Color="#F59E0B" Offset="1"/>
+    </LinearGradientBrush>
+
+
+    <!--Sleet-->
+    <LinearGradientBrush x:Key="Gear1CircleStroke"
+                     MappingMode="Absolute"
+                     StartPoint="23.12,43.48"
+                     EndPoint="24.88,46.52">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Gear1RaysStroke"
+                     MappingMode="Absolute"
+                     StartPoint="22.67,42.69"
+                     EndPoint="25.33,47.31">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Gear2CircleStroke"
+                     MappingMode="Absolute"
+                     StartPoint="37.12,43.48"
+                     EndPoint="38.88,46.52">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Gear2RaysStroke"
+                     MappingMode="Absolute"
+                     StartPoint="36.67,42.69"
+                     EndPoint="39.33,47.31">
+        <GradientStop Color="#86C3DB" Offset="0"/>
+        <GradientStop Color="#86C3DB" Offset="0.45"/>
+        <GradientStop Color="#5EAFCF" Offset="1"/>
+    </LinearGradientBrush>
+    
+    
+    
+    <!--Clear Day -->
+    <LinearGradientBrush x:Key="ClearSunGradient"
+       StartPoint="0.25,0.06714"
+       EndPoint="0.75,0.93286">
+        <GradientStop Color="#FBBF24" Offset="0"/>
+        <GradientStop Color="#FBBF24" Offset="0.45"/>
+        <GradientStop Color="#F59E0B" Offset="1"/>
+    </LinearGradientBrush>
+</ResourceDictionary>

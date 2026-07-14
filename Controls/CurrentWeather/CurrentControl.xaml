@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="Weather.Controls.CurrentWeather.CurrentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.Controls.CurrentWeather"
+             xmlns:elems="clr-namespace:Weather.Controls.Elements"
+             d:DataContext="{d:DesignInstance Type=local:CurrentViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="DataStyle" TargetType="elems:MainElement">
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="15,7,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Data.Date, StringFormat='\Погода на {0}'}"
+                   FontFamily="Roboto"
+                   FontSize="20"
+                   TextAlignment="Left"
+                   Grid.Column="0"/>
+
+            <Button HorizontalAlignment="Right"
+                    Margin="0,0,14,0"
+                    Foreground="AliceBlue"
+                    Background="#FFFF6F4F"
+                    BorderBrush="#FFFF6F4F"
+                    Grid.Column="1"
+                    Command="{Binding EnableCurrentDataCommand}"
+                    IsEnabled="{Binding ToggleCurrentData}"
+                    Opacity="{Binding ButtonOpacity}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="8">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FFF32C00"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FFF32C00"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="Вернуть текущий прогноз"
+                           FontFamily="Cascadia Code"
+                           TextAlignment="Center"
+                           Margin="5"/>
+            </Button>
+        </Grid>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,14,0,0">
+            <ContentControl Content="{Binding Data.ImageData, Converter={StaticResource ImageConverter}}"
+                            Width="100"
+                            Height="100"
+                            Margin="10,0,0,0"/>
+            <TextBlock Text="{Binding Data.Temperature, StringFormat='\{0}°'}"
+                       Style="{StaticResource MainTextStyle}"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0"/>
+            <TextBlock Text="{Binding Data.WeatherStatus.Description}"
+                       Style="{StaticResource MainTextStyle}"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0"
+                       MaxWidth="190"
+                       TextWrapping="WrapWithOverflow"
+                       TextAlignment="Center"/>
+            <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                
+                
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+
+                    <!--Apparent Temperature-->
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="ощущается"
+                                       MainText="{Binding Data.ApparentTemperature, StringFormat='\{0}°'}"/>
+
+                    <!--Humidity-->
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="влажность"
+                                       MainText="{Binding Data.Humidity, StringFormat='\{0}%'}"/>
+                    <!--Wind-->
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="ветер,м/с"
+                                   Grid.Row="0"
+                                   Style="{StaticResource TitleStyle}"/>
+                        <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                            <TextBlock Text="{Binding Data.WindSpeed, StringFormat='\{0} '}"
+                                       Style="{StaticResource MainTextStyle}"/>
+                            <TextBlock FontSize="16"
+                                       TextAlignment="Left"
+                                       FontFamily="Roboto"
+                                       FontWeight="Light">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}({1}°)">
+                                        <Binding Path="Data.WindDirection"/>
+                                        <Binding Path="Data.WindDegree"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Pressure-->
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="давление,мбар"
+                                       MainText="{Binding Data.Pressure}"/>
+
+                    <!--UV Index-->
+                    <Grid Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="УФ индекс"
+                                   Grid.Row="0"
+                                   Style="{StaticResource TitleStyle}"/>
+                        <elems:UVIndexControl UVIndex="{Binding Data.UVIndex}"
+                                              Grid.Row="1"/>
+                    </Grid>
+            
+                    <!--Precip-->
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="осадки,мм"
+                                       MainText="{Binding Data.Precip}"/>
+                    <!--Probabilities-->
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="вероятность осадков,&#x0A;дождь/снег">
+                        <elems:MainElement.MainText>
+                            <MultiBinding StringFormat="{}{0}%/{1}%">
+                                <Binding Path="Data.RainProbability"/>
+                                <Binding Path="Data.SnowProbability"/>
+                            </MultiBinding>
+                        </elems:MainElement.MainText>
+                    </elems:MainElement>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <!--Dewpoint-->
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="точка росы"
+                                       MainText="{Binding Data.DewPoint, StringFormat='\{0}°'}"/>
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="видимость, км"
+                                       MainText="{Binding Data.Visibility}"/>
+
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="облачность"
+                                       MainText="{Binding Data.CloudPercent, StringFormat='\{0}%'}"/>
+                    <elems:MainElement Style="{StaticResource DataStyle}"
+                                       TitleText="порывы,м/с"
+                                       MainText="{Binding Data.GustSpeed}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

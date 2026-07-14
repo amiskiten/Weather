@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="Weather.Controls.DailyWeather.DailyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.Controls.DailyWeather" 
+             xmlns:elems="clr-namespace:Weather.Controls.Elements" 
+             d:DataContext="{d:DesignInstance Type=local:DailyViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Суточный прогноз"
+                   FontSize="20"
+                   FontFamily="Roboto"
+                   TextAlignment="Left"
+                   Grid.Row="0"
+                   HorizontalAlignment="Left"
+                   Margin="10,10"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    Margin="10,5">
+            <ContentControl Content="{Binding DailyWeather.ImageData, 
+                                              Converter={StaticResource ImageConverter}}"
+                            Width="100"
+                            Height="100"
+                            VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding DailyWeather.WeatherStatus.Description}"
+                       MaxWidth="190"
+                       Style="{StaticResource MainTextStyle}"
+                       VerticalAlignment="Center"
+                       TextWrapping="WrapWithOverflow"
+                       Margin="10,0,0,0"/>
+            <Grid Margin="10,0,0,0"
+                  VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Температура"
+                           TextAlignment="Center"
+                           FontFamily="Arial"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Margin="0,0,0,8"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <elems:MainElement TitleText="максимальная"
+                                       MainText="{Binding DailyWeather.MaxTemperature, 
+                                                          StringFormat='\{0}°'}"/>
+                    <elems:MainElement TitleText="минимальная"
+                                       MainText="{Binding DailyWeather.MinTemperature, 
+                                                          StringFormat='\{0}°'}"
+                                       Margin="10,0,0,0"/>
+                    <elems:MainElement TitleText="средняя"
+                                       MainText="{Binding DailyWeather.AverageTemperature, 
+                                                          StringFormat='\{0}°'}"
+                                       Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid VerticalAlignment="Center"
+                  Margin="10,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Остальное"
+                           TextAlignment="Center"
+                           FontFamily="Arial"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Margin="0,0,0,8"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <elems:MainElement Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       TitleText="средняя влажность"
+                                       MainText="{Binding DailyWeather.AverageHumidity,
+                                                  StringFormat='\{0}%'}"/>
+                    <elems:MainElement Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       TitleText="средняя видимость, км"
+                                       MainText="{Binding DailyWeather.AverageVision}"/>
+
+                    <Grid VerticalAlignment="Center"
+                          Margin="10,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="макс. УФ индекс"
+                                   Style="{StaticResource TitleStyle}"
+                                   Grid.Row="0"/>
+                        <elems:UVIndexControl UVIndex="{Binding DailyWeather.UVIndex}"
+                                              Grid.Row="1"
+                                              HorizontalAlignment="Left"/>
+                    </Grid>
+
+                    <elems:MainElement VerticalAlignment="Center"
+                                       Margin="10,0,0,0"
+                                       TitleText="макс. скорость ветра,м/с"
+                                       MainText="{Binding DailyWeather.MaxWindSpeed}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" 
+                    Margin="10,5,0,0"
+                    Grid.Row="2">
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Солнце"
+                           TextAlignment="Center"
+                           FontFamily="Arial"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <elems:MainElement TitleText="восход"
+                                       MainText="{Binding AstroData.Sunrise}"/>
+                    <elems:MainElement TitleText="заход"
+                                       MainText="{Binding AstroData.Sunset}"
+                                       Margin="10,0,0,0"/>
+                    <elems:MainElement TitleText="солнечный день"
+                                       MainText="{Binding AstroData, Converter={StaticResource SunDayConverter}}"
+                                       Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid VerticalAlignment="Top"
+                  Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Луна"
+                           TextAlignment="Center"
+                           FontFamily="Arial"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <elems:MainElement TitleText="восход"
+                                       MainText="{Binding AstroData.Moonrise}"/>
+                    <elems:MainElement TitleText="заход"
+                                       MainText="{Binding AstroData.Moonset}"
+                                       Margin="10,0,0,0"/>
+                    <elems:MainElement TitleText="фаза"
+                                       MainText="{Binding AstroData.MoonPhase}"
+                                       Margin="10,0,0,0"/>
+                    <elems:MainElement TitleText="освещение"
+                                       MainText="{Binding AstroData.MoonIllumination, StringFormat='\{0}%'}"
+                                       Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid VerticalAlignment="Top"
+                  Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Осадки"
+                           TextAlignment="Center"
+                           FontFamily="Arial"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1"
+                            VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="17"
+                                   TextAlignment="Center"
+                                   FontFamily="Arial"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="Дождь"/>
+                        <elems:MainElement TitleText="всего,мм"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           MainText="{Binding DailyWeather.TotalPrecip}"/>
+                        <elems:MainElement TitleText="вероятность"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           Margin="7,0,0,0"
+                                           MainText="{Binding DailyWeather.RainProbability, StringFormat='\{0}%'}"/>
+                    </Grid>
+                    <Grid Margin="10,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="17"
+                                   TextAlignment="Center"
+                                   FontFamily="Arial"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="снег"/>
+                        <elems:MainElement TitleText="всего,мм"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           MainText="{Binding DailyWeather.TotalSnow}"/>
+                        <elems:MainElement TitleText="вероятность"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           Margin="7,0,0,0"
+                                           MainText="{Binding DailyWeather.SnowProbability, StringFormat='\{0}%'}"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

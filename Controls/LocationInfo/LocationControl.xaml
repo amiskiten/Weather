@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Weather.Controls.LocationInfo.LocationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.Controls.LocationInfo"
+             xmlns:elems="clr-namespace:Weather.Controls.Elements" 
+             d:DataContext="{d:DesignInstance Type=local:LocationViewModel}"
+             mc:Ignorable="d"
+             x:Name="root"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Информация о городе"
+                   Grid.Row="0"
+                   HorizontalAlignment="Left"
+                   FontSize="20"
+                   FontFamily="Arial"
+                   Grid.Column="0"
+                   Margin="15,10,0,0"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="15,0,15,0">
+            <elems:MainElement TitleText="город"
+                               MainText="{Binding LocationData.CityName}"/>
+            <elems:MainElement TitleText="регион"
+                               MainText="{Binding LocationData.RegionName}"
+                               Margin="10,0,0,0"/>
+            <elems:MainElement TitleText="часовой пояс"
+                               MainText="{Binding LocationData.Timezone}"
+                               Margin="10,0,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    Margin="15,0,15,10"
+                    Grid.Column="0">
+            <elems:MainElement TitleText="широта"
+                               MainText="{Binding LocationData.Latitude}"/>
+            <elems:MainElement TitleText="долгота"
+                               MainText="{Binding LocationData.Longitude}"
+                               Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

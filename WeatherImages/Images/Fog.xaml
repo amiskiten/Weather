@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Weather.WeatherImages.Images.Fog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.WeatherImages.Images"
+             mc:Ignorable="d" 
+             xmlns:elems="clr-namespace:Weather.WeatherImages.Elements"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Viewbox>
+        <Grid Width="64" Height="64">
+            <Rectangle Fill="{StaticResource CloudDrawing}" Height="64" Width="64"/>
+            <elems:FogLine LineTopMargin="50.5"/>
+            <elems:FogLine LineTopMargin="56.25" AnimationBeginTime="-0:0:4"/>
+        </Grid>
+    </Viewbox>
+</UserControl>
